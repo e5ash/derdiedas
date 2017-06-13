@@ -1,0 +1,136 @@
+// SASS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home
+//   width: $icon-home-width
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites
+$add-cart-name: 'add-cart'
+$add-cart-x: 0px
+$add-cart-y: 0px
+$add-cart-offset-x: 0px
+$add-cart-offset-y: 0px
+$add-cart-width: 46px
+$add-cart-height: 46px
+$add-cart-total-width: 128px
+$add-cart-total-height: 89px
+$add-cart-image: '../img/sprite.png'
+$add-cart: (0px, 0px, 0px, 0px, 46px, 46px, 128px, 89px, '../img/sprite.png', 'add-cart', )
+$bag-name: 'bag'
+$bag-x: 46px
+$bag-y: 0px
+$bag-offset-x: -46px
+$bag-offset-y: 0px
+$bag-width: 41px
+$bag-height: 45px
+$bag-total-width: 128px
+$bag-total-height: 89px
+$bag-image: '../img/sprite.png'
+$bag: (46px, 0px, -46px, 0px, 41px, 45px, 128px, 89px, '../img/sprite.png', 'bag', )
+$lk-name: 'lk'
+$lk-x: 87px
+$lk-y: 0px
+$lk-offset-x: -87px
+$lk-offset-y: 0px
+$lk-width: 41px
+$lk-height: 43px
+$lk-total-width: 128px
+$lk-total-height: 89px
+$lk-image: '../img/sprite.png'
+$lk: (87px, 0px, -87px, 0px, 41px, 43px, 128px, 89px, '../img/sprite.png', 'lk', )
+$lk-footer-name: 'lk_footer'
+$lk-footer-x: 0px
+$lk-footer-y: 46px
+$lk-footer-offset-x: 0px
+$lk-footer-offset-y: -46px
+$lk-footer-width: 41px
+$lk-footer-height: 43px
+$lk-footer-total-width: 128px
+$lk-footer-total-height: 89px
+$lk-footer-image: '../img/sprite.png'
+$lk-footer: (0px, 46px, 0px, -46px, 41px, 43px, 128px, 89px, '../img/sprite.png', 'lk_footer', )
+$new-star-name: 'new_star'
+$new-star-x: 41px
+$new-star-y: 46px
+$new-star-offset-x: -41px
+$new-star-offset-y: -46px
+$new-star-width: 25px
+$new-star-height: 26px
+$new-star-total-width: 128px
+$new-star-total-height: 89px
+$new-star-image: '../img/sprite.png'
+$new-star: (41px, 46px, -41px, -46px, 25px, 26px, 128px, 89px, '../img/sprite.png', 'new_star', )
+$spritesheet-width: 128px
+$spritesheet-height: 89px
+$spritesheet-image: '../img/sprite.png'
+$spritesheet-sprites: ($add-cart, $bag, $lk, $lk-footer, $new-star, )
+$spritesheet: (128px, 89px, '../img/sprite.png', $spritesheet-sprites, )
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home
+//   @include sprite-width($icon-home)
+//
+// .icon-email
+//   @include sprite($icon-email)
+//
+// Example usage in HTML:
+//   `display: block` sprite:
+//   <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//   // CSS
+//   .icon {
+//     display: inline-block;
+//   }
+//
+//   // HTML
+//   <i class="icon icon-home"></i>
+@mixin sprite-width($sprite)
+  width: nth($sprite, 5)
+
+@mixin sprite-height($sprite)
+  height: nth($sprite, 6)
+
+@mixin sprite-position($sprite)
+  $sprite-offset-x: nth($sprite, 3)
+  $sprite-offset-y: nth($sprite, 4)
+  background-position: $sprite-offset-x  $sprite-offset-y
+
+@mixin sprite-image($sprite)
+  $sprite-image: nth($sprite, 9)
+  background-image: url(#{$sprite-image})
+
+@mixin sprite($sprite)
+  @include sprite-image($sprite)
+  @include sprite-position($sprite)
+  @include sprite-width($sprite)
+  @include sprite-height($sprite)
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SASS
+//
+// @include sprites($spritesheet-sprites)
+@mixin sprites($sprites)
+  @each $sprite in $sprites
+    $sprite-name: nth($sprite, 10)
+    .#{$sprite-name}
+      @include sprite($sprite)
+
+i.icon
+  display: inline-block
+  vertical-align: middle
+
+i.icon-add-cart
+  @include sprite($add-cart)
+i.icon-bag
+  @include sprite($bag)
+i.icon-lk
+  @include sprite($lk)
+i.icon-lk_footer
+  @include sprite($lk_footer)
+i.icon-new_star
+  @include sprite($new_star)

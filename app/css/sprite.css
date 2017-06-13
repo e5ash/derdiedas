@@ -1,0 +1,33 @@
+i.icon {
+  display: inline-block;
+  vertical-align: middle; }
+
+i.icon-add-cart {
+  background-image: url(../img/sprite.png);
+  background-position: 0px 0px;
+  width: 46px;
+  height: 46px; }
+
+i.icon-bag {
+  background-image: url(../img/sprite.png);
+  background-position: -46px 0px;
+  width: 41px;
+  height: 45px; }
+
+i.icon-lk {
+  background-image: url(../img/sprite.png);
+  background-position: -87px 0px;
+  width: 41px;
+  height: 43px; }
+
+i.icon-lk_footer {
+  background-image: url(../img/sprite.png);
+  background-position: 0px -46px;
+  width: 41px;
+  height: 43px; }
+
+i.icon-new_star {
+  background-image: url(../img/sprite.png);
+  background-position: -41px -46px;
+  width: 25px;
+  height: 26px; }
